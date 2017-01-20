@@ -9,7 +9,7 @@
 <script type="text/javascript">
 // Plain JS to show header when no JQuery available
 window.onload = function() {
-	if (!window.jQuery){  
+	if (!window.jQuery){
 		document.getElementById("loading").style.display = "none";
 		document.getElementById("header").style.display = "block";
 	}
@@ -18,7 +18,7 @@ window.onload = function() {
 	var ua = navigator.userAgent.toLowerCase();
 	var isAndroid = ua.indexOf("android") > -1;
 	if(!isAndroid){
-		var sheet = document.createElement("style")		
+		var sheet = document.createElement("style")
 		sheet.innerHTML = ".dropdown-submenu:hover>.dropdown-menu { display: block; }";
 		document.body.appendChild(sheet);
 	}
@@ -41,7 +41,7 @@ $( document ).ready(function() {
 	$("#header").show();
 	$("#loading").hide();
 	$("#ds18b20_form").show();
-	
+
 	// RefreshData function, the URL and Succes are different for every page
 	function RefreshData(){
 		$.ajax
@@ -70,7 +70,7 @@ $( document ).ready(function() {
 				$("#DS18B20_resolution option[value='10']").text("10-bits 0.25°C");
 				$("#DS18B20_resolution option[value='11']").text("11-bits 0.125°C");
 				$("#DS18B20_resolution option[value='12']").text("12-bits 0.0625°C");
-				
+
 				// Retrieve errors from ESP and show them on the page
 				if (values[5] == "1")  // error wifi
 				{
@@ -98,8 +98,8 @@ $( document ).ready(function() {
 				}
 			}
 		});
-	};	
-	
+	};
+
 	// Function to submit (save) form data to ESP. Depending on the settings the ESP might reboot, then we have to trigger the CheckReboot function
 	$("#ds18b20_form").submit(function(event) {
 		event.preventDefault();
@@ -120,7 +120,7 @@ $( document ).ready(function() {
 			}
 		});
 	});
-	
+
 	// Function to send Reboot command to ESP and wait to come back online. Triggered after pushing the red 'Reboot' button from the modal popup
 	function DoReboot(){
 		$("#header").hide();
@@ -130,7 +130,7 @@ $( document ).ready(function() {
 		$.ajax
 		({type: "GET",url: "/api",data: {action:"reboot",value:"true"},cache: false})
 	};
-	
+
 	// Function send Reset command (clear EEPROM) to ESP. Triggered after pushing the red 'Reset' button from the modal popup
 	function DoReset(){
 		$("#header").hide();
@@ -158,7 +158,7 @@ $( document ).ready(function() {
 		$("#DoFunction").html("Reboot");
 		$("#DoFunction").attr("title", "DoReboot");
 	});
-	
+
 	// Function to figure out what exactly is confirmed in the modal-dialog, redirect to corresponding function
 	$("#DoFunction").click(function(){
 		$("#modal-dialog").modal("hide");
@@ -183,11 +183,11 @@ $( document ).ready(function() {
 				$("#header").show();
 				$("#ds18b20_form").show();
 			}
-			});	
+			});
 		}
 	};
 });
-    </script>    
+    </script>
    </head>
    <body>
 	<script type="text/javascript" src="/js/menubar.js"></script>
@@ -208,7 +208,7 @@ $( document ).ready(function() {
                 </div>
 			</div>
 		</div>
-	</div>	  
+	</div>
 	<p id="error1"></p><p id="error2"></p><p id="error3"></p><p id="error4"></p>
       <div class="container">
       <div class="row">
@@ -240,7 +240,7 @@ $( document ).ready(function() {
                      </div>
                      <div class="form-group">
                         <div class="input-group">
-                           <span class="input-group-addon">Interval (minutes) </span>
+                           <span class="input-group-addon">Interval (seconds) </span>
                            <select class="form-control" name="DS18B20_interval" id="DS18B20_interval">
                            </select>
                         </div>
